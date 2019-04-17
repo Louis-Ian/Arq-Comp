@@ -2,6 +2,30 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#define MREAD 2
+#define MWRITE 4
+#define MFETCH 1
+
+FILE *fp;
+
+typedef unsigned int word;
+typedef unsigned char byte;
+typedef unsigned long microcode;
+
+microcode rom[512]; //microprograma máximo = 512 microcódigos (512 x 36 bits). Para facilitar manipulação de memória, cada microcódigo é 
+                    //armazenado em 64 bits, sendo zerados os 28 bits de alta ordem. Tamanho máximo do microprograma = 512 x 8 bytes = 4 KBytes
+microcode workcode = 0;
+word mpc = 0;
+word next_address = 1;
+
+void address_encode();
+
+void save(){    //grava rom em arquivo
+    fp = fopen("microprog.rom","rb+");
+
+    fclose(fp);
+}
+
 int PC;                     //contador de programa tem o endereço da próxima intrução
 int AC;                     //acumulador, um registrador para aritmética
 int instr;                  //intrução atual
@@ -30,9 +54,14 @@ void interpret(int memory[], int starting_address){ //função principal do inte
 }
 
 int main(int argc, char const *argv[]){
+    unsigned long int mem[512];
+    for(int i = 0; i < 512; i++){
+        mem[i] = 0;
+    }
 
+//    interpret(mem, 0);
 
-    printf("rodou okay\n");
+//    printf("rodou okay\n");
 
     return 0;
 }
