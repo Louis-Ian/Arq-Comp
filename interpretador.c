@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <cstdio>
+#include <cstdlib>
 
 #define MREAD 2
 #define MWRITE 4
