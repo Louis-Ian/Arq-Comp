@@ -25,6 +25,8 @@ void address_encode();
 void save(){    //grava rom em arquivo
     fp = fopen("microprog.rom","rb+");
 
+    fp.
+
     fclose(fp);
 }
 

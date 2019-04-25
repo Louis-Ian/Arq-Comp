@@ -12,8 +12,8 @@ typedef unsigned int word;
 typedef unsigned char byte;
 typedef unsigned long microcode;
 
-microcode rom[512]; //microprograma mÃ¡ximo = 512 microcÃ³digos (512 x 36 bits). Para facilitar manipulaÃ§Ã£o de memÃ³ria, cada microcÃ³digo Ã© 
-                    //armazenado em 64 bits, sendo zerados os 28 bits de alta ordem. Tamanho mÃ¡ximo do microprograma = 512 x 8 bytes = 4 KBytes
+microcode rom[512]; //microprograma máximo = 512 microcódigos (512 x 36 bits). Para facilitar manipulação de memória, cada microcódigo é 
+                    //armazenado em 64 bits, sendo zerados os 28 bits de alta ordem. Tamanho máximo do microprograma = 512 x 8 bytes = 4 KBytes
 
 microcode workcode = 0;
 word mpc = 0;
@@ -30,7 +30,7 @@ void save() //grava rom em arquivo
     from.close();
 }
 
-void new_(word addr = 512) //codifica end. do prox. microcÃ³digo; grava microcode no endereÃ§o especificado e comeÃ§a novo
+void new_(word addr = 512) //codifica end. do prox. microcódigo; grava microcode no endereço especificado e começa novo
 {
 
     address_encode();
@@ -45,7 +45,7 @@ void new_(word addr = 512) //codifica end. do prox. microcÃ³digo; grava microc
 
     workcode = 0;
 
-    next_address = mpc + 1; //por padrÃ£o, o prÃ³ximo endereÃ§o da instruÃ§Ã£o Ã© o atual mais um, podendo ser modificado posteriormente alterando next_address
+    next_address = mpc + 1; //por padrão, o próximo endereço da instrução é o atual mais um, podendo ser modificado posteriormente alterando next_address
 }
 
 void address_encode()
@@ -263,12 +263,12 @@ void sll8() //adiciona deslocamento SLL8 ao microcodigo (01 - bits 23 e 24 do mi
     workcode = workcode | code;
 }
 
-void igoto(word n_address) //atribui prÃ³ximo endereÃ§o diretamente a um especificado
+void igoto(word n_address) //atribui próximo endereço diretamente a um especificado
 {
     next_address = n_address;
 }
 
-void jmpz(string reg, word else_address) //codifica bit jamz jÃ¡ determinando o prÃ³ximo endereÃ§o e a operaÃ§Ã£o da alu cujo resultado deve ser analisado se Ã© zero
+void jmpz(string reg, word else_address) //codifica bit jamz já determinando o próximo endereço e a operação da alu cujo resultado deve ser analisado se é zero
 {
     next_address = else_address;
 
@@ -295,7 +295,7 @@ void jmpz(string reg, word else_address) //codifica bit jamz jÃ¡ determinando 
     workcode = workcode | code;
 }
 
-void jmpn(string reg, word else_address) //codifica bit jamn jÃ¡ determinando o prÃ³ximo endereÃ§o e a operaÃ§Ã£o da alu cujo resultado deve ser analisado se Ã© diferente de zero
+void jmpn(string reg, word else_address) //codifica bit jamn já determinando o próximo endereço e a operação da alu cujo resultado deve ser analisado se é diferente de zero
 {
     next_address = else_address;
 
@@ -322,7 +322,7 @@ void jmpn(string reg, word else_address) //codifica bit jamn jÃ¡ determinando 
     workcode = workcode | code;
 }
 
-void gotoMBR(bool bit = false) //Faz o pulo direto para um endereÃ§o guardado em MBR. Se bit = true, entÃ£o MBR | 0x100, ou seja, pula 256 em relaÃ§Ã£o ao endereÃ§o guardado em MBR
+void gotoMBR(bool bit = false) //Faz o pulo direto para um endereço guardado em MBR. Se bit = true, então MBR | 0x100, ou seja, pula 256 em relação ao endereço guardado em MBR
 {
     next_address = 0;
 
@@ -362,7 +362,7 @@ void gotoMBR(bool bit = false) //Faz o pulo direto para um endereÃ§o guardado 
     }
 }
 
-void memop(byte rwf) //Codifica bits de controle de memÃ³ria. MREAD | MWRITE | MFETCH
+void memop(byte rwf) //Codifica bits de controle de memória. MREAD | MWRITE | MFETCH
 {
     microcode code = rwf;
 
@@ -678,7 +678,7 @@ int main()
     iset("tos","mdr");
     new_(); //iflt3
 
-    jmpn("opc", 82); // se OPC NÃ£o Ã© zero, vÃ¡ para 338, senÃ£o vÃ¡ para 82
+    jmpn("opc", 82); // se OPC Não é zero, vá para 338, senão vá para 82
     new_(); //iflt4
 
     //ifeq = 71 (0x47) =============================================================================================
@@ -693,7 +693,7 @@ int main()
     iset("tos","mdr");
     new_(); //ifeq3
 
-    jmpz("opc", 82); //se OPC eh Zero, vÃ¡ para 338, senÃ£o vÃ¡ para 82
+    jmpz("opc", 82); //se OPC eh Zero, vá para 338, senão vá para 82
     new_(); //ifeq4
 
     //if_icmpeq = 75 (0x4B) ========================================================================================
@@ -717,10 +717,10 @@ int main()
     new_(); //if_icmpeq5
 
     sub_h("","opc");
-    jmpz("", 82); //se OPC-H eh Zero, vÃ¡ para 338, senÃ£o vÃ¡ para 82
+    jmpz("", 82); //se OPC-H eh Zero, vá para 338, senão vá para 82
     new_(); //if_icmpeq6
 
-    //instruÃ§Ã£o nula no end. 81. Deveria ser T, que estarÃ¡ no endereÃ§o 338 (apenas para facilitar endereÃ§amento)
+    //instrução nula no end. 81. Deveria ser T, que estará no endereço 338 (apenas para facilitar endereçamento)
     new_(); 
 
     //T = 338 (0x152) ==============================================================================================
@@ -855,7 +855,7 @@ int main()
     new_(); //ireturn8
 
     //init = 115 (0x73) ===========================================================================================================
-    //init (+3 bytes vazios) word1 word2 word3 word4, onde words = cpp, lv, pc e sp respectivamente. Configura regiÃµes de memÃ³ria.
+    //init (+3 bytes vazios) word1 word2 word3 word4, onde words = cpp, lv, pc e sp respectivamente. Configura regiÃµes de memória.
     renc_dest("opc");
     inc("mar","opc");
     memop(MREAD);
