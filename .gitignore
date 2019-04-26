@@ -4,3 +4,5 @@ interpretador
 .vscode/ipch/f90894f63c92042f/mmap_address.bin
 .vscode/c_cpp_properties.json
 .vscode/ipch/640e5ce64d1479a1/mmap_address.bin
+*.ipch
+*.bin
