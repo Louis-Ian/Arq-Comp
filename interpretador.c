@@ -25,7 +25,15 @@ void address_encode();
 void save(){    //grava rom em arquivo
     fp = fopen("microprog.rom","rb+");
 
-    fp.
+    if( fp == NULL){
+        printf("File is NULL");
+        exit(1);
+    }
+
+//fprintf para printar no arquivo
+//fscanf para escanear no arquivo
+//fread para ler no arquivo binário
+//fwrite para escrever no arquivo binário
 
     fclose(fp);
 }
