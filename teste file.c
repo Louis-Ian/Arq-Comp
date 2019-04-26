@@ -14,9 +14,20 @@ int main(int argc, char const *argv[]){
         teste[i] = fread( (unsigned long*)&(teste), 512*sizeof(unsigned long), 512, file);
     }
 
+    int byte = 1;
     for(int i = 0; i < 512; i++)
     {
-        printf("%lu", teste[i]);
+        if (byte == 1){
+            byte++;
+            printf("%d: %lu", (i/8)+1, teste[i]);
+        }
+        else if( byte == 8){
+            byte = 1;
+            printf("%lu\n", teste[i]);
+        } else {
+            byte++;
+            printf("%lu", teste[i]);
+        }
     }
 
     fclose(file);
