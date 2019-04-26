@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char const *argv[]){
+int main(int argc, char const *argv[])
+{
     
     FILE *file;
     file = fopen("microprog.rom","rb+");
@@ -12,22 +13,19 @@ int main(int argc, char const *argv[]){
     for(int i = 0; i < 512; i++)
     {
         teste[i] = fread( (unsigned long*)&(teste), 512*sizeof(unsigned long), 512, file);
+        //teste[i] = 0b0;
     }
 
-    int byte = 1;
+    //teste[511] = 0b0000000000000000000000000000000000000000000000000000000000100001;
+
     for(int i = 0; i < 512; i++)
     {
-        if (byte == 1){
-            byte++;
-            printf("%d: %lu", (i/8)+1, teste[i]);
+        printf("%d: ", i+1);
+        for(int j = 63; j >= 0; j--)
+        {
+            printf("%lu", ((unsigned long)(teste[i] >> j) & 0b1));
         }
-        else if( byte == 8){
-            byte = 1;
-            printf("%lu\n", teste[i]);
-        } else {
-            byte++;
-            printf("%lu", teste[i]);
-        }
+        printf("\n");
     }
 
     fclose(file);
