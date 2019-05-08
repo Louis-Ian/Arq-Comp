@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <cstdio>
-#include <cstdlib>
+//#include <cstdio>
+//#include <cstdlib>
 
 #define MREAD 2
 #define MWRITE 4
@@ -65,7 +65,7 @@ void interpret(int memory[], int starting_address){ //função principal do inte
     }
 }
 
-int main(int argc, char const *argv[]){
+int main_interpreter(int argc, char const *argv[]){
     unsigned long int mem[512];
     for(int i = 0; i < 512; i++){
         mem[i] = 0;
