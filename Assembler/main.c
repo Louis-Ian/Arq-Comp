@@ -134,7 +134,7 @@ int tamanhoOperando(char *opcode){
 
 }
 
-//testa se a string pode ser um inteiro, retora 1 se sim.
+//testa se a string pode ser um inteiro, retorna 1 se sim.
 int isInteger(char *ch){
     size_t i = 0;
     size_t len = strlen(ch);

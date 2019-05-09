@@ -13,7 +13,7 @@ byte *size;
 void init_memory(void){
     size = malloc(4*sizeof(byte));
 
-    FILE *file_size = fopen("prog.exe","rb");
+    FILE *file_size = fopen("../R/prog.exe","rb");
     assert(file_size);
     fread(size, sizeof(size[0]), 4, file_size);
     fclose(file_size);

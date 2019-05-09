@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     init_firmware();
     // print_firmware();
     init_memory();
-    // print_memory_until_byte(62);
+    print_memory_until_byte(30);
 
     byte file_size = size_of_file();
     // printf("File size: %u\n", file_size);
