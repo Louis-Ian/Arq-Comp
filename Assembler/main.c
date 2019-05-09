@@ -47,12 +47,12 @@ int main(int argc, char *argv[])
     destino = fopen(dest, "wb");
     
     //escreve os 24 bytes iniciais do binário
-    fwrite(&tamanhoArq, sizeof(unsigned long int), 1, destino);
-    fwrite(&init, sizeof(unsigned long int), 1, destino);
-    fwrite(&cpp, sizeof(unsigned long int), 1, destino);
-    fwrite(&lv, sizeof(unsigned long int), 1, destino);
-    fwrite(&pc, sizeof(unsigned long int), 1, destino);
-    fwrite(&sp, sizeof(unsigned long int), 1, destino);
+    fwrite(&tamanhoArq, sizeof(unsigned int), 1, destino);
+    fwrite(&init, sizeof(unsigned int), 1, destino);
+    fwrite(&cpp, sizeof(unsigned int), 1, destino);
+    fwrite(&lv, sizeof(unsigned int), 1, destino);
+    fwrite(&pc, sizeof(unsigned int), 1, destino);
+    fwrite(&sp, sizeof(unsigned int), 1, destino);
 
     //lê o aruivo e vai escrevendo o binário.
     while(fgets(linha, 100, origem) != NULL){
