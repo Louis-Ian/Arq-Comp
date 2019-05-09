@@ -38,8 +38,6 @@ int main(int argc, char *argv[])
     int aux, param;
 
 
-
-
     FILE *origem;
     origem = fopen(arq, "r");
 
