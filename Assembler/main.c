@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
-int tamanhoArq = 20; // tamanho em bytes da inicialização do programa
+int tamanhoArq = 20; // tamanho em bytes da inicializaÃ§Ã£o do programa
 int numVar = 0; //numero de variaveis
 char opcodes[20][15] = {"nop", "iadd", "isub", "iand", "ior", "dup", "pop", "swap", "bipush", "iload", "istore", "wide", "ldc_w", "iinc", "goto", "iflt", "ifeq", "if_icmpeq", "invokevirtual", "ireturn"};
 char variaveis[256][20];//Armazena as variaveis. *Tentar fazer lista encadeada.
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     inicializaVetorVar();
     primeiraVarredura(arq);
 
-
+    
     unsigned long int init = 0x7300;
     unsigned long int cpp = 0x0006;
     unsigned long int lv = 0x1001;
@@ -45,7 +45,8 @@ int main(int argc, char *argv[])
 
     FILE *destino;
     destino = fopen(dest, "wb");
-
+    
+    //escreve os 24 bytes iniciais do binÃ¡rio
     fwrite(&tamanhoArq, sizeof(unsigned long int), 1, destino);
     fwrite(&init, sizeof(unsigned long int), 1, destino);
     fwrite(&cpp, sizeof(unsigned long int), 1, destino);
@@ -53,7 +54,7 @@ int main(int argc, char *argv[])
     fwrite(&pc, sizeof(unsigned long int), 1, destino);
     fwrite(&sp, sizeof(unsigned long int), 1, destino);
 
-    //lê o aruivo e vai escrevendo o binário.
+    //lÃª o aruivo e vai escrevendo o binÃ¡rio.
     while(fgets(linha, 100, origem) != NULL){
         sscanf(linha, "%s %s %s", op1, op2, op3);
         if(isOP(op1)){
@@ -100,7 +101,7 @@ int main(int argc, char *argv[])
 
 }
 
-//Testa se a string é um opcode
+//Testa se a string Ã© um opcode
 int isOP(char *ch){
     int i;
     for(i = 0; i<=20; i++){
@@ -175,7 +176,7 @@ void inicializaVetorVar(){
     }
 }
 
-//retorna a distancia do label recebido até a linha para onde se quer fazer o desvio
+//retorna a distancia do label recebido atÃ© a linha para onde se quer fazer o desvio
 int distLabel(char *arq, char* label){
 
     FILE *file;
@@ -222,7 +223,7 @@ int distLabel(char *arq, char* label){
 
 }
 
-//lê o arquivo uma vez: armazena as variaveis no vetor e conta o tamanho do programa
+//lÃª o arquivo uma vez: armazena as variaveis no vetor e conta o tamanho do programa
 void primeiraVarredura(char *arq){
 
     FILE *file;
@@ -257,7 +258,7 @@ void primeiraVarredura(char *arq){
     fclose(file);
 
 }
-//retorna o código hex do opcode
+//retorna o cÃ³digo hex do opcode
 int retornaCodigo(char * opcode){
 
     if(strcmp(opcode, "nop") == 0){
