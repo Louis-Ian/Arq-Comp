@@ -237,7 +237,7 @@ void readProg() {
 	char bufferTamanho[4];
 	char bufferInit[20];
 
-	prog.open("program.exe", ios::in | ios::binary);
+	prog.open("prog.exe", ios::in | ios::binary);
 
 	int tamanhoProg = 0;
 
