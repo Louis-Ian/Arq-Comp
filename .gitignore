@@ -1,3 +1,7 @@
 interpretador
 *.ipch
 *.bin
+*.img
+*.exe
+Assembler/main
+R/emulador
