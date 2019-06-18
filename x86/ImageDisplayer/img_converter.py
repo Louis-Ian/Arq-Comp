@@ -6,7 +6,7 @@ import numpy as np
 
 
 def open_image(path):
-    img = Image.open('/home/luizok/Imagens/background/opm2.png')
+    img = Image.open(path)
     img_8 = img.convert('P')
     img_8_resized = img_8.resize((320, 200), Image.ANTIALIAS)
     
@@ -59,7 +59,7 @@ def write_bin_palette(filename, pixels):
 
 if __name__ == '__main__':
 
-    path = '/home/luizok/Imagens/background/opm2.png'
+    path = '/home/louisian/Imagens/heman.jpeg'
 
     img = open_image(path)
     filename = path.split('/')[-1].split('.')[0]

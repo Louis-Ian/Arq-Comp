@@ -12,12 +12,12 @@
     ;Atribui ao registrador "Souce Index" (SI) o endereço do primeiro byte da mensagem
     mov si, msg
 
-    ;Pra interrupção 0x10, AH = 0x0E envia o caractere para a tela
+    ;Pra interrupção 0x10 (vídeo), AH = 0x0E imprime o caractere na tela
     mov ah, 0x0E
 
     ;laço que pega cada caractere pelo endereço no registrador SI e o exibe através da interrupção 0x10, parando ao encontrar o byte '0'
 loop:
-    lodsb
+    lodsb       ;Loads byte at address DS:SI into AL
     or al, al
     jz fim
     int 0x10
@@ -30,6 +30,7 @@ fim:
     ;mensagem, complemento de 512 bytes + bytes de identificação do boot
 msg:
     db "hello world"
+
     times 510 - ($-$$) db 0   ;Limpa os restante dos bit pra 0
     dw 0xAA55                 ;Assinatura de boot
 
